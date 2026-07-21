@@ -1,0 +1,51 @@
+import { AppLayout } from "@/components/app-layout"
+import Link from "next/link"
+import { ServerIcon, PackageIcon, LayoutGridIcon } from "lucide-react"
+
+const sections = [
+  {
+    href: "/edit/machines",
+    icon: ServerIcon,
+    iconClassName: "text-sky-500",
+    title: "Route",
+    description: "Add, edit, or remove delivery routes.",
+  },
+  {
+    href: "/edit/machine-products",
+    icon: LayoutGridIcon,
+    iconClassName: "text-emerald-500",
+    title: "Route Location",
+    description: "Assign locations to each route.",
+  },
+  {
+    href: "/edit/products",
+    icon: PackageIcon,
+    iconClassName: "text-amber-500",
+    title: "Location Master",
+    description: "Manage location records for route planning.",
+  },
+]
+
+export default function EditPage() {
+  return (
+    <AppLayout title="Edit Mode">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {sections.map((s) => (
+          <Link
+            key={s.href}
+            href={s.href}
+            className="glass-card group flex flex-col gap-3 rounded-xl p-5 transition-colors hover:bg-accent/40"
+          >
+            <s.icon className={`size-6 ${s.iconClassName}`} />
+            <div>
+              <p className="font-semibold text-sm">{s.title}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                {s.description}
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </AppLayout>
+  )
+}
